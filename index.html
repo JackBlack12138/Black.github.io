@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Webpage with Sidebar Navigation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<aside>
+    <nav>
+        <a href="#chapter1" class="nav-link">Introduction</a>
+        <a href="#chapter2" class="nav-link">Background</a>
+        <a href="#chapter3" class="nav-link">Methodology</a>
+        <a href="#chapter4" class="nav-link">Results</a>
+        <a href="#chapter5" class="nav-link">Conclusion</a>
+    </nav>
+</aside>
+
+<div class="content">
+    <h1>Sample Webpage with Sidebar Navigation</h1>
+
+    <div class="chapter" id="chapter1">
+        <h2>Chapter 1: Introduction</h2>
+        <p>
+            This is the introduction chapter. In this chapter, we will discuss the basics of the topic and provide an overview of what will be covered in the subsequent chapters.
+        </p>
+    </div>
+
+    <div class="chapter" id="chapter2">
+        <h2>Chapter 2: Background</h2>
+        <p>
+            The background chapter provides the necessary context and historical information related to the topic. Understanding the background is crucial for comprehending the current state and future directions of the subject matter.
+        </p>
+    </div>
+
+    <div class="chapter" id="chapter3">
+        <h2>Chapter 3: Methodology</h2>
+        <p>
+            In the methodology chapter, we outline the methods and procedures used to conduct the research or analysis. This includes data collection techniques, analytical frameworks, and any tools or technologies employed.
+        </p>
+    </div>
+
+    <div class="chapter" id="chapter4">
+        <h2>Chapter 4: Results</h2>
+        <p>
+            The results chapter presents the findings of the research or analysis. It includes data, observations, and any significant patterns or trends identified during the study.
+        </p>
+    </div>
+
+    <div class="chapter" id="chapter5">
+        <h2>Chapter 5: Conclusion</h2>
+        <p>
+            The conclusion chapter summarizes the key findings and discusses their implications. It also suggests potential areas for future research or action based on the results obtained.
+        </p>
+    </div>
+</div>
+
+<script>
+    // Get all the navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    // Add click event listener to each link
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Remove the active class from all links
+            navLinks.forEach(link => link.classList.remove('active'));
+            // Add the active class to the clicked link
+            this.classList.add('active');
+        });
+    });
+
+    // Highlight the active section based on scroll position
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        const sections = document.querySelectorAll('.chapter');
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 60) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
